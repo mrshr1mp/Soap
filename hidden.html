@@ -1,68 +1,18 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Silly Soap</title>
-<link rel="shortcut icon" href="https://pngimg.com/d/goose_PNG10.png" type="image/x-icon">
-<style>
-body{background:#000;color:#0f0;font-family:monospace;padding:20px}
-#t{width:100%;max-width:900px;margin:0 auto}
-.l{display:flex;flex-wrap:wrap}
-.p{margin-right:6px}
-input{background:none;border:none;color:#0f0;outline:none;flex:1;font-family:monospace;font-size:16px}
-</style>
+
+
+<link rel="stylesheet" href="stylehidden.css">
+
 </head>
 <body>
-<div id="t"></div>
-<script>
-(function(){
-var _t=document.getElementById('t');
-function _a(txt,user){
-var d=document.createElement('div');d.className='l';
-if(user){
-var s=document.createElement('span');s.className='p';s.textContent='(soapuser1):';
-var i=document.createElement('input');i.type='text';i.autofocus=true;
-i.addEventListener('keydown',function(e){
-if(e.key==='Enter'){
-var v=i.value.trim();
-i.disabled=true;_a(v,false);_h(v);_a('',true);}
-});
-d.appendChild(s);d.appendChild(i);_t.appendChild(d);i.focus();
-}else{d.textContent=txt;_t.appendChild(d);}}
-function _hash(s){var salt="S1lLx";var str=salt+(s||'').toLowerCase();var h=5381>>>0;for(var i=0;i<str.length;i++){h=(((h<<5)+h)+str.charCodeAt(i))>>>0;}return h>>>0;}
-function _xorDecode(b64,key){try{var bin=atob(b64);var out=[];for(var i=0;i<bin.length;i++){out.push(String.fromCharCode(bin.charCodeAt(i)^key.charCodeAt(i%key.length)));}return out.join('');}catch(e){return'[decode error]';}}
-var _k="K!9";
-var R={
-2090324718:["H0s1JzdGJg==","H0s1Jz9ZBg==","H0s1Jz9YJw==","H0s1Jz9XJg==","H0s1Jz9WJg==","H0s1Jz9VJg==","H0s1Jz9UAA==","G0o6H0kqSw==","GGY5KTAuJQ=="],
-2090730552:"o3xwfnBqJjl9b2ZgY3ZGIGlmY2Zi",
-274427826:"p3xwfnFqJjF9b2ZgY3VGIGlt",
-193490025:"q3xwfmBqJjJ9b2ZgY3VH",
-5861615:"r3xwfnBqJjN9b2ZgY3VI",
-2088629428:"s3xwfnBqJjR9b2ZgY3VJ",
-4095465619:"t3xwfnBqJjV9b2ZgY3VK",
-196859178:["u3xwfnBqJjZ9b2ZgY3VL","u3xwfnBqJjZ9b2ZgY3VM","u3xwfnBqJjZ9b2ZgY3VN"],
-812400968:"v3xwfnBqJjZ9b2ZgY3VO",
-4012336712:"w3xwfnBqJjZ9b2ZgY3VP",
-234967019:"x3xwfnBqJjZ9b2ZgY3VQ",
-2874207589:"y3xwfnBqJjZ9b2ZgY3VR",
-2090737184:"z3xwfnBqJjZ9b2ZgY3VS",
-552456360:"A3xwfnBqJjZ9b2ZgY3VT",
-426864182:"B3xwfnBqJjZ9b2ZgY3VU",
-2090155648:"C3xwfnBqJjZ9b2ZgY3VV"
-};
-function _h(inp){
-var k=_hash((inp||'').toLowerCase());
-var v=R[k];
-if(typeof v==='undefined'){_a('Unknown command: <'+inp+'> Enter \"help\" for help.');return;}
-if(Array.isArray(v)){for(var i=0;i<v.length;i++){try{_a(_xorDecode(v[i],_k));}catch(e){_a('[decode err]');}}return;}
-if(k===274427826){_a(_xorDecode(v,_k).repeat(5));return;}
-if(k===193490025){var base=_xorDecode(v,_k);var big=(function(){var s='';for(var i=0;i<1121;i++)s+=base;return s;})();_a(big+'NICE!');return;}
-_a(_xorDecode(v,_k));
-}
-_a('',true);
-})();
-</script>
+<div id="terminal"></div>
+
+
+<script src="codehidden.js"></script>
 </body>
 </html>
-
