@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silly Soap</title>
+<style>
+    body {
+        background-color: #000;
+        color: #0f0;
+        font-family: monospace;
+        padding: 20px;
+    }
+    #terminal {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .line {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .prompt {
+        margin-right: 5px;
+    }
+    input {
+        background: none;
+        border: none;
+        color: #0f0;
+        outline: none;
+        flex: 1;
+        font-family: monospace;
+        font-size: 16px;
+    }
+</style>
+</head>
+<body>
+<div id="terminal"></div>
+
+<script>
+const terminal = document.getElementById('terminal');
+
+
+function addLine(text = '', isUser = false) {
+    const line = document.createElement('div');
+    line.className = 'line';
+    if(isUser) {
+        const prompt = document.createElement('span');
+        prompt.className = 'prompt';
+        prompt.textContent = '(soapuser1):';
+        line.appendChild(prompt);
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.autofocus = true;
+        input.addEventListener('keydown', (e) => {
+            if(e.key === 'Enter') {
+                const userText = input.value.trim();
+                input.disabled = true;
+                addLine(userText);
+                handleCommand(userText);
+                addLine('', true);
+            }
+        });
+        line.appendChild(input);
+        terminal.appendChild(line);
+        input.focus();
+    } else {
+        line.textContent = text;
+        terminal.appendChild(line);
+    }
+}
+
+// Function to handle commands
+function handleCommand(command) {
+    switch(command.toLowerCase()) {
+        case 'help':
+            addLine('╭╮╭╮╭╮╱╱╭╮╱╱╱╱╱╱╱╱╱╱╱╱╱╱╭╮╱╱╱╱╭━━━╮╭╮╭╮╱╱╱╱╱╭━━━╮╱╱╱╱╱╱╱╱╭╮╭╮╱╭╮╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╭╮╱╱╱╱╭╮╱╱╱╭╮');
+            addLine('┃┃┃┃┃┃╱╱┃┃╱╱╱╱╱╱╱╱╱╱╱╱╱╭╯╰╮╱╱╱┃╭━╮┃┃┃┃┃╱╱╱╱╱┃╭━╮┃╱╱╱╱╱╱╱╱┃┃┃┃╱┃┃╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱┃┃╱╱╱╱┃┃╱╱╱┃┃');
+            addLine('┃┃┃┃┃┣━━┫┃╭━━┳━━┳╮╭┳━━╮╰╮╭╋━━╮┃╰━━┳┫┃┃┃╭╮╱╭╮┃╰━━┳━━┳━━┳━━┫┃┃╰━╯┣━━┳━┳━━╮╭┳━━╮╭━━┳━━┳╮╭┳━━╮┃╰━┳━━┫┃╭━━┫┃');
+            addLine('┃╰╯╰╯┃┃━┫┃┃╭━┫╭╮┃╰╯┃┃━┫╱┃┃┃╭╮┃╰━━╮┣┫┃┃┃┃┃╱┃┃╰━━╮┃╭╮┃╭╮┃╭╮┣╯┃╭━╮┃┃━┫╭┫┃━┫┣┫━━┫┃━━┫╭╮┃╰╯┃┃━┫┃╭╮┃┃━┫┃┃╭╮┣╯');
+            addLine('╰╮╭╮╭┫┃━┫╰┫╰━┫╰╯┃┃┃┃┃━┫╱┃╰┫╰╯┃┃╰━╯┃┃╰┫╰┫╰━╯┃┃╰━╯┃╰╯┃╭╮┃╰╯┣╮┃┃╱┃┃┃━┫┃┃┃━┫┃┣━━┃┣━━┃╰╯┃┃┃┃┃━┫┃┃┃┃┃━┫╰┫╰╯┣╮');
+            addLine('╱╰╯╰╯╰━━┻━┻━━┻━━┻┻┻┻━━╯╱╰━┻━━╯╰━━━┻┻━┻━┻━╮╭╯╰━━━┻━━┻╯╰┫╭━┻╯╰╯╱╰┻━━┻╯╰━━╯╰┻━━╯╰━━┻━━┻┻┻┻━━╯╰╯╰┻━━┻━┫╭━┻╯');
+            addLine('╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╭━╯┃╱╱╱╱╱╱╱╱╱╱╱┃┃╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱┃┃');
+            addLine('╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╰━━╯╱╱╱╱╱╱╱╱╱╱╱╰╯╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╰╯')
+            addLine('‎');
+            addLine('Command Notes:');
+            addLine('* ALL commands are case sensitive please use lowercase letters');
+            break;
+        case 'soap':
+            addLine('hello! Welcome to Silly Soap. Enjoy our products! what we can offer for you is a math equation. (3^3 + sqrt(144)) / 6 - (7 * 2) / 4 + 5^2');
+            break;
+        case 'silly':
+            addLine('Wow! That is pretty silly of you to say that! How did you do that! Extra bubbles for you! Cleanliness is next to silliness! Only the silliest get the best soap! Don\'t forget to wash behind your ears! Enjoy your silly soap! I hope you have a great day full of silliness and cleanliness! Stay silly! Fun fact: Silly Soap was invented by a clown! Who knew clowns were so clean? 8- Fun fact: Silly Soap smells like cotton candy!'.repeat(5));
+            break;
+        case 'f8f':
+            addLine('FF0000 | '.repeat(1121) + 'NICE!');
+            break;
+        case '28':
+            addLine('Correct! You solved the equation. Here is a secret message: 01010011 00110010 00111001 00110010 01100101 01101101 01101000 00110010 01001001 01001000 01011010 01110100 01011010 00110011 01011010 01110000 01001001 01000111 01100100 01111010 01100100 01101001 01000010 01110100 01100011 01101110 01101000 00110010 01001001 01000111 01111000 01110110 01100100 01111001 01000010 00110100 01100010 01001000 01100100 00110010 01001001 01010011 01000001 00110101 01010111 01101010 01001110 01011010');
+            break;
+        case '9a3b':
+            addLine('T2pYd0rP1xE1pTb1HqE2CzOk9hD2pE:b0x3Q0p|3pQb0ZqRm5aU0xqVUdWc0JqR1NqT2pWb1VjQ1pOa1VqV2pGd1ZqQ1ZqV0pKQ1pWb1VjQ1pOa1VqV2pGd1ZqQ1ZqV0pKQ1pWb1VjQ1pOa1VqV2pGd1ZqQ1ZqV0pKQ1pWb1VjQ1pOa1VqV2pGd1ZqQ1ZqV0pKQ1pWb1VjQ1pOa!VqV2pGd1ZqQ1ZqV0pKQ1pWb1VjQ1pOa1VqV2pGd1ZqQ1ZqV0pKQ1pWb1VjQ1pOa1VqV2pGd1ZqQ1ZqV0pKQ1pWb1VjQ1pOa1VqV2pGd1ZqQ1ZqV0pKQ1pWb1VjQ1pOa1@qV2pGd1ZqQ1ZqV0pKQ1pWb1VjQ1pOa1VqV2pGd1ZqQ1ZqV0pKQ1pWb1VjQ1pOa1VqV2pGd1ZqQ1ZqV0pK=');
+            break; 
+        case 'b0x3q0p':
+            addLine('{1}rddzc://ggg.iyedelo.myw/gkdmr?f=0zx2lgk2jJm ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎  ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ systemfile');
+            break;
+        case 'systemfile':
+            addLine('You are using system version Silly Soap Terminal v1.0.0');
+            addLine('Developed by Silly Soap Inc.');
+            addLine('System Status: All systems operational.');
+            addLine('System Identifier: SOAP-TERM-001');
+            addLine('System Name: Silly Soap Terminal');
+            addLine('User: soapuser1');
+            addLine('User Type: Guest');
+            addLine('Is user Super?: False | Unable to use SUDO commands.');
+            addLine('User ID: U3lzdGVtIE5hbWU6IFNpbGx5IFNvYXAgVGVybWluYWwgfCBVc2VyOiBzb2FwdXNlcjEgVXNlciBUeXBlOiBHdWVzdCB8IFN1cGVyOiBGYWxzZSB8Cg== ');
+            addLine('If you have a problem with your system, please use the "upgrade-<new ID>" command to upgrade your user status.');
+            addLine('Use command "code" to understand more about your system.');
+            addLine('Note: As a guest user, your access to certain commands and features is limited. To unlock more functionalities, consider upgrading your account.');
+            break;
+        case 'upgrade-u3lzdgvtie5hbwu6ifnpbgx5ifnvyxagvgvybwluywwgfcbvc2vyoibzb2fwdxnlcjegvxnlcibuexbloibhdwvzdcb8ifn1cgvyoibucnvlihwk':
+            addLine('User upgrade successful! You Can now access a new terminal page. Go to upgraded.html to access your new terminal.');
+            break;
+        case 'soapuser1':
+            addLine('This is a guest account. To access more features, please upgrade your account using the "upgrade-<new ID>" command.');
+            break;
+        case 'upgrade-<new id>':
+            addLine('Please replace <new ID> with the actual user ID you wish to upgrade to. For example: "upgrade-BVc2VyOiBzb2FwdXNlcBVAQc2VyOiBzbFwdXNlcjTgIgyOiBzb2FwdXNlTcBVc2VyOiBzb2FwdXNlcjIgVXNlciB"');
+            break;
+        case 'sillysoap':
+            addLine('Thats the name! :) Enjoy your stay at Silly Soap, where cleanliness meets silliness! Don\'t forget to check out our special offers and new products. Stay silly and stay clean!');
+            break;
+        case 'sudo':
+            addLine('Access Denied: You do not have permission to use SUDO commands. Please upgrade your user status to access these features.');
+            break;
+        case 'update':
+            addLine('System Update: Your Silly Soap Terminal is up to date. No updates are currently available. Have a fun time and stay silly! - The Silly Soap Team 2008');
+            break;
+        case 'rights':
+            addLine('copyright 2008 Silly Soap Inc. All rights reserved. Unauthorized duplication or distribution of this software, in whole or in part, is strictly prohibited. Silly Soap and the Silly Soap logo are trademarks of Silly Soap Inc. Use of this software is subject to the terms and conditions outlined in the End User License Agreement (EULA). By using this software, you agree to comply with all applicable laws and regulations regarding software usage and intellectual property rights.');
+            break;
+        case 'code':
+            addLine('cT0xIHc9MiBlPTMgcj00IHQ9NSB5PTYgdT03IGk9OCBvPTkgcD0xMAphPSEgcz1AIGQ9IyBmPSQgZz0lIGg9XiBqPSYgaz0qIGw9KCAKej0xMSB4PTEyIGM9MTMgdj0xNCBiPTE1IG49MTYgbT0xNwoKwqkgMjAwOCBTaWxseSBTb2FwIEluYy4gQWxsIHJpZ2h0cyByZXNlcnZlZC4gVGhpcyBkb2N1bWVudCwgaW5jbHVkaW5nIGJ1dCBub3QgbGltaXRlZCB0byBhbGwgc291cmNlIGNvZGUsIGV4ZWN1dGFibGUgZmlsZXMsIHNjcmlwdHMsIGFsZ29yaXRobXMsIGRlc2lnbnMsIGdyYXBoaWNzLCBtdWx0aW1lZGlhIGNvbnRlbnQsIGRvY3VtZW50YXRpb24sIHNwZWNpZmljYXRpb25zLCB1c2VyIGludGVyZmFjZXMsIHRyYWRlbWFya3MsIHRyYWRlIHNlY3JldHMsIGFuZCBhbnkgb3RoZXIgbWF0ZXJpYWxzLCB3aGV0aGVyIHRhbmdpYmxlIG9yIGludGFuZ2libGUsIHJlbGF0ZWQgdG8gdGhlIHByb3ByaWV0YXJ5IHNvZnR3YXJlIHByb2plY3Qga25vd24gYXMg4oCcVGhlIEdvb3NlIENvZGXigJ0gKGhlcmVpbmFmdGVyIHJlZmVycmVkIHRvIGFzIHRoZSDigJxTb2Z0d2FyZeKAnSksIGNvbnN0aXR1dGVzIHRoZSBzb2xlIGFuZCBleGNsdXNpdmUgcHJvcGVydHkgb2YgU2lsbHkgU29hcCBJbmMuLCBhbmQgaXMgcHJvdGVjdGVkIHVuZGVyIHRoZSBVbml0ZWQgU3RhdGVzIENvcHlyaWdodCBBY3Qgb2YgMTk3NiwgYXMgYW1lbmRlZCwgYXMgd2VsbCBhcyBhcHBsaWNhYmxlIGludGVybmF0aW9uYWwgY29weXJpZ2h0LCB0cmFkZW1hcmssIGFuZCBpbnRlbGxlY3R1YWwgcHJvcGVydHkgbGF3cyBhbmQgdHJlYXRpZXMuIFNpbGx5IFNvYXAgSW5jLiBoZXJlYnkgZ3JhbnRzIGEgbGltaXRlZCwgbm9uLWV4Y2x1c2l2ZSwgbm9uLXRyYW5zZmVyYWJsZSwgcmV2b2NhYmxlIGxpY2Vuc2UgdG8gdXNlIHRoZSBTb2Z0d2FyZSBzb2xlbHkgZm9yIHBlcnNvbmFsLCBlZHVjYXRpb25hbCwgb3Igbm9uLWNvbW1lcmNpYWwgcHVycG9zZXMsIHByb3ZpZGVkIHRoYXQgYW55IGFuZCBhbGwgY29weXJpZ2h0LCB0cmFkZW1hcmssIGFuZCBvdGhlciBwcm9wcmlldGFyeSBub3RpY2VzIGNvbnRhaW5lZCB3aXRoaW4gdGhlIFNvZnR3YXJlIHJlbWFpbiBpbnRhY3QgYW5kIHZpc2libGUuIEFueSB1bmF1dGhvcml6ZWQgcmVwcm9kdWN0aW9uLCBtb2RpZmljYXRpb24sIGFkYXB0YXRpb24sIHRyYW5zbGF0aW9uLCByZXZlcnNlIGVuZ2luZWVyaW5nLCBkZWNvbXBpbGF0aW9uLCBkaXNhc3NlbWJseSwgcmVkaXN0cmlidXRpb24sIHB1YmxpYyBwZXJmb3JtYW5jZSwgcmVudGFsLCBsZWFzZSwgb3Igc2FsZSBvZiB0aGUgU29mdHdhcmUsIG9yIGFueSBwb3J0aW9uIHRoZXJlb2YsIGluIGFueSBmb3JtIG9yIGJ5IGFueSBtZWFucywgd2hldGhlciBlbGVjdHJvbmljLCBtZWNoYW5pY2FsLCBkaWdpdGFsLCBvciBvdGhlcndpc2UsIGlzIHN0cmljdGx5IHByb2hpYml0ZWQgd2l0aG91dCB0aGUgZXhwcmVzcyBwcmlvciB3cml0dGVuIGNvbnNlbnQgb2YgU2lsbHkgU29hcCBJbmMuIFRoZSBMaWNlbnNlZSBhY2tub3dsZWRnZXMgdGhhdCB0aGUgU29mdHdhcmUgbWF5IGNvbnRhaW4gY29uZmlkZW50aWFsIGFuZCBwcm9wcmlldGFyeSBpbmZvcm1hdGlvbiwgYW5kIGFncmVlcyB0byBtYWludGFpbiB0aGUgc3RyaWN0ZXN0IGNvbmZpZGVudGlhbGl0eSB3aXRoIHJlc3BlY3QgdG8gYW55IHBhcnQgb2YgdGhlIFNvZnR3YXJlIG5vdCBleHByZXNzbHkgYXV0aG9yaXplZCBmb3IgdXNlIHVuZGVyIHRoaXMgbGljZW5zZS4gU2lsbHkgU29hcCBJbmMuIGV4cHJlc3NseSBkaXNjbGFpbXMgYWxsIHdhcnJhbnRpZXMsIHdoZXRoZXIgZXhwcmVzcywgaW1wbGllZCwgb3Igc3RhdHV0b3J5LCBpbmNsdWRpbmcsIHdpdGhvdXQgbGltaXRhdGlvbiwgYW55IHdhcnJhbnRpZXMgb2YgbWVyY2hhbnRhYmlsaXR5LCBmaXRuZXNzIGZvciBhIHBhcnRpY3VsYXIgcHVycG9zZSwgdGl0bGUsIG5vbi1pbmZyaW5nZW1lbnQsIG9yIGZyZWVkb20gZnJvbSBkZWZlY3RzLCB2aXJ1c2VzLCBvciBvdGhlciBoYXJtZnVsIGNvbXBvbmVudHMsIGFuZCB0aGUgTGljZW5zZWUgYXNzdW1lcyBhbGwgcmlza3MgYXNzb2NpYXRlZCB3aXRoIHRoZSBpbnN0YWxsYXRpb24sIGV4ZWN1dGlvbiwgYW5kIHVzZSBvZiB0aGUgU29mdHdhcmUuIFVuZGVyIG5vIGNpcmN1bXN0YW5jZXMgc2hhbGwgU2lsbHkgU29hcCBJbmMuLCBpdHMgYWZmaWxpYXRlcywgb2ZmaWNlcnMsIGRpcmVjdG9ycywgZW1wbG95ZWVzLCBvciBhZ2VudHMgYmUgbGlhYmxlIGZvciBhbnkgZGlyZWN0LCBpbmRpcmVjdCwgaW5jaWRlbnRhbCwgY29uc2VxdWVudGlhbCwgc3BlY2lhbCwgcHVuaXRpdmUsIG9yIGV4ZW1wbGFyeSBkYW1hZ2VzLCBpbmNsdWRpbmcgYnV0IG5vdCBsaW1pdGVkIHRvIGxvc3QgcHJvZml0cywgbG9zcyBvZiBkYXRhLCBvciBidXNpbmVzcyBpbnRlcnJ1cHRpb24sIGV2ZW4gaWYgU2lsbHkgU29hcCBJbmMuIGhhcyBiZWVuIGFkdmlzZWQgb2YgdGhlIHBvc3NpYmlsaXR5IG9mIHN1Y2ggZGFtYWdlcy4gQnkgYWNjZXNzaW5nLCBkb3dubG9hZGluZywgaW5zdGFsbGluZywgb3Igb3RoZXJ3aXNlIHVzaW5nIHRoZSBTb2Z0d2FyZSwgdGhlIExpY2Vuc2VlIGV4cHJlc3NseSBhZ3JlZXMgdG8gY29tcGx5IHdpdGggYWxsIGFwcGxpY2FibGUgbGF3cyBhbmQgcmVndWxhdGlvbnMsIGFuZCBhY2tub3dsZWRnZXMgdGhhdCB0aGUgU29mdHdhcmUgcmVtYWlucyB0aGUgZXhjbHVzaXZlIGludGVsbGVjdHVhbCBwcm9wZXJ0eSBvZiBTaWxseSBTb2FwIEluYy4gYW5kIGlzIHByb3RlY3RlZCBhZ2FpbnN0IGFueSB1bmF1dGhvcml6ZWQgdXNlLCBjb3B5aW5nLCBvciBkaXN0cmlidXRpb24uIFRoaXMgY29weXJpZ2h0IGxpY2Vuc2UgaXMgZWZmZWN0aXZlIGFzIG9mIEphbnVhcnkgMSwgMjAwOCwgYW5kIHNoYWxsIHJlbWFpbiBpbiBlZmZlY3QgaW5kZWZpbml0ZWx5IHVubGVzcyBleHByZXNzbHkgc3VwZXJzZWRlZCwgYW1lbmRlZCwgb3IgcmV2b2tlZCBpbiB3cml0aW5nIGJ5IFNpbGx5IFNvYXAgSW5jLiwgYXQgaXRzIHNvbGUgZGlzY3JldGlvbi4gQW55IGxlZ2FsIGFjdGlvbiBhcmlzaW5nIGZyb20gdGhlIHVzZSwgbWlzdXNlLCBvciBpbnRlcnByZXRhdGlvbiBvZiB0aGlzIGxpY2Vuc2Ugc2hhbGwgYmUgZ292ZXJuZWQgYnkgdGhlIGxhd3Mgb2YgdGhlIFN0YXRlIG9mIERlbGF3YXJlLCB3aXRob3V0IHJlZ2FyZCB0byBjb25mbGljdCBvZiBsYXcgcHJpbmNpcGxlcywgYW5kIHRoZSBleGNsdXNpdmUganVyaXNkaWN0aW9uIGFuZCB2ZW51ZSBmb3IgYW55IHN1Y2ggYWN0aW9uIHNoYWxsIGxpZSB3aXRoaW4gdGhlIHN0YXRlIG9yIGZlZGVyYWwgY291cnRzIGxvY2F0ZWQgd2l0aGluIE5ldyBDYXN0bGUgQ291bnR5LCBEZWxhd2FyZS4gU2lsbHkgU29hcCBJbmMuIHJlc2VydmVzIHRoZSByaWdodCB0byB1cGRhdGUsIG1vZGlmeSwgb3IgdGVybWluYXRlIHRoaXMgbGljZW5zZSBhdCBhbnkgdGltZSB3aXRob3V0IHByaW9yIG5vdGljZSwgYW5kIGNvbnRpbnVlZCB1c2Ugb2YgdGhlIFNvZnR3YXJlIGNvbnN0aXR1dGVzIGFjY2VwdGFuY2Ugb2YgYW55IHN1Y2ggbW9kaWZpY2F0aW9ucy4gVGhlIExpY2Vuc2VlIGZ1cnRoZXIgYWdyZWVzIHRoYXQgdGhlIFNvZnR3YXJlLCBhbmQgYW55IG1vZGlmaWNhdGlvbnMsIGRlcml2YXRpdmUgd29ya3MsIG9yIGVuaGFuY2VtZW50cyB0aGVyZXRvLCBzaGFsbCBhdCBhbGwgdGltZXMgcmVtYWluIHRoZSBzb2xlIGFuZCBleGNsdXNpdmUgcHJvcGVydHkgb2YgU2lsbHkgU29hcCBJbmMuLCBhbmQgbm8gdHJhbnNmZXIgb2Ygb3duZXJzaGlwLCB0aXRsZSwgb3IgaW50ZWxsZWN0dWFsIHByb3BlcnR5IHJpZ2h0cyBpcyBncmFudGVkIGJ5IHRoaXMgbGljZW5zZS4gQnkgcmV0YWluaW5nLCBjb3B5aW5nLCBvciB1c2luZyB0aGUgU29mdHdhcmUgaW4gYW55IG1hbm5lciwgdGhlIExpY2Vuc2VlIGFja25vd2xlZGdlcyBmdWxsIGFuZCB1bnJlc2VydmVkIGFjY2VwdGFuY2Ugb2YgYWxsIHRlcm1zLCBjb25kaXRpb25zLCBkaXNjbGFpbWVycywgYW5kIHJlc3RyaWN0aW9ucyBzZXQgZm9ydGggaGVyZWluLCBhbmQgYWdyZWVzIHRvIGluZGVtbmlmeSwgZGVmZW5kLCBhbmQgaG9sZCBoYXJtbGVzcyBTaWxseSBTb2FwIEluYy4gZnJvbSBhbmQgYWdhaW5zdCBhbnkgY2xhaW1zLCBsb3NzZXMsIGRhbWFnZXMsIGxpYWJpbGl0aWVzLCBjb3N0cywgb3IgZXhwZW5zZXMgYXJpc2luZyBmcm9tIGFueSBicmVhY2ggb2YgdGhpcyBsaWNlbnNlIG9yIHZpb2xhdGlvbiBvZiBhcHBsaWNhYmxlIGxhdy4gVGhpcyBsaWNlbnNlIGlzIGludGVuZGVkIHRvIGJlIGZ1bGx5IGVuZm9yY2VhYmxlIHRvIHRoZSBtYXhpbXVtIGV4dGVudCBwZXJtaXR0ZWQgdW5kZXIgYXBwbGljYWJsZSBsYXcsIGFuZCBhbnkgaW52YWxpZGl0eSBvciB1bmVuZm9yY2VhYmlsaXR5IG9mIGFueSBwb3J0aW9uIG9mIHRoaXMgbGljZW5zZSBzaGFsbCBub3QgYWZmZWN0IHRoZSB2YWxpZGl0eSBvciBlbmZvcmNlYWJpbGl0eSBvZiB0aGUgcmVtYWluaW5nIHByb3Zpc2lvbnMuIFNpbGx5IFNvYXAgSW5jLiBleHByZXNzbHkgcmVzZXJ2ZXMgYWxsIHJpZ2h0cyBub3QgZXhwcmVzc2x5IGdyYW50ZWQgaGVyZWluLg==');
+            break;
+        default:
+            addLine(`Unknown command: <${command}> Enter "help" for help.`);
+    }
+}
+
+// Start terminal with first prompt
+addLine('', true);
+</script>
+</body>
+</html>
