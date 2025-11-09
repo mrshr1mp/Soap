@@ -1,55 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Silly Soap</title>
-<link rel="shortcut icon" href="https://pngimg.com/d/goose_PNG10.png" type="image/x-icon">
-<style>
-body{background:#000;color:#0f0;font-family:monospace;padding:20px}
-#terminal{width:100%;max-width:800px;margin:0 auto}
-.line{display:flex;flex-wrap:wrap}
-.prompt{margin-right:5px}
-input{background:none;border:none;color:#0f0;outline:none;flex:1;font-family:monospace;font-size:16px}
-</style>
+
+<link rel="stylesheet" href="styleupgraded.css">
+
 </head>
 <body>
 <div id="terminal"></div>
-<script>
-(function(){
-var t=document.getElementById('terminal');
-function addLine(txt='',user=false){
-var d=document.createElement('div');d.className='line';
-if(user){
-var p=document.createElement('span');p.className='prompt';p.textContent='(soapuser2):';
-var i=document.createElement('input');i.type='text';i.autofocus=true;
-i.addEventListener('keydown',function(e){if(e.key==='Enter'){var v=i.value.trim();i.disabled=true;addLine(v);handleCommand(v);addLine('',true);}});
-d.appendChild(p);d.appendChild(i);t.appendChild(d);i.focus();
-}else{d.textContent=txt;t.appendChild(d);}
-}
-function h(s){var salt="S1lLx";var str=salt+(s||'').toLowerCase();var h=5381>>>0;for(var i=0;i<str.length;i++){h=(((h<<5)+h)+str.charCodeAt(i))>>>0;}return h>>>0;}
-function xorDecode(b64,key){try{var bin=atob(b64);var out=[];for(var i=0;i<bin.length;i++){out.push(String.fromCharCode(bin.charCodeAt(i)^key.charCodeAt(i%key.length)));}return out.join('');}catch(e){return'[decode error]';}}
-var k="K!9";
-var R={
-2090324718:["eHh6eHh4","dHh0eXh5"], 
-2090730552:"o3xwfnBqJjl9b2ZgY3ZGIGlmY2Zi",
-274427826:"p3xwfnFqJjF9b2ZgY3VGIGlt",
-193490025:"q3xwfmBqJjJ9b2ZgY3VH",
-5861615:"r3xwfnBqJjN9b2ZgY3VI",
-2088629428:"s3xwfnBqJjR9b2ZgY3VJ",
-4095465619:"t3xwfnBqJjV9b2ZgY3VK"
-};
-function handleCommand(c){
-var key=h(c);
-var v=R[key];
-if(typeof v==='undefined'){addLine(`Unknown command: <${c}> Enter "help" for help.`);return;}
-if(Array.isArray(v)){for(var i=0;i<v.length;i++){addLine(xorDecode(v[i],k));}return;}
-addLine(xorDecode(v,k));
-}
-addLine('',true);
-})();
-</script>
+
+<script src="codeupgraded.js"></script>
 </body>
 </html>
-
-
