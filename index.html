@@ -19,6 +19,15 @@
         <input class="PasButton" type="password" id="inputvalue", placeholder="(enter here)">
         <button class="PasButton" onclick="code()">Enter Password</button>
     </div>
-    <script src="code.js"></script>
+    <script src="code.js">
+        function code() {
+            const inp = document.getElementById("inputvalue")
+        
+            if (inp.value === "V9r!x7Pq@3mZ") {
+            document.location = "/hidden/hidden.html"
+            }
+        }
+    </script>
 </body>
+
 </html>
