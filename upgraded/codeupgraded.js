@@ -109,6 +109,9 @@ function handleCommand(command) {
         case 'sudo-cd-generate-id':
             addLine('U3lzdGVtIE5hbWU6IFNpbGx5IFNvYXAgVGVybWluYWxWMiB8IFVzZXI6IEd1ZXN0IFVzZXIgVHlwZTogR3Vlc3QgfCBTdXBlcjogRmFsc2UgfCBJRCBDYXJkID0gIk4vQSIK');
             break;
+        case 'upgrade-U3lzdGVtIE5hbWU6IFNpbGx5IFNvYXAgVGVybWluYWxWMiB8IFVzZXI6IEd1ZXN0IFVzZXIgVHlwZTogR3Vlc3QgfCBTdXBlcjogRmFsc2UgfCBJRCBDYXJkID0gIk4vQSIK':
+            addLine('User upgrade successful! You Can now access a new terminal page. Go to /guest/guest.html to access your new terminal.');
+            break;  
         default:
             addLine(`Unknown command: <${command}> Enter "help" for help.`);
     }
@@ -117,6 +120,7 @@ function handleCommand(command) {
 // Start terminal with first prompt
 
 addLine('', true);
+
 
 
 
