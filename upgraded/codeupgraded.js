@@ -98,7 +98,7 @@ function handleCommand(command) {
             addLine('37°46\'12"N 122°23\'19"W'.repeat(10));
             addLine('Warning: Accessing secret information may violate company policies and could lead to disciplinary action. Proceed with caution.');
             break;
-        case 'AI':
+        case 'ai':
             addLine('News Report: Silly Soap Inc. has recently announced the integration of advanced AI technology into their product development process. This move aims to enhance the creativity and efficiency of their design team, allowing for more innovative soap products that cater to diverse customer preferences. The AI system will assist in analyzing market trends, customer feedback, and design patterns to create unique and appealing soap designs. Silly Soap Inc. believes that this technological advancement will not only improve their product offerings but also set a new standard in the soap industry for innovation and customer satisfaction.');
             addLine('Warning: Accessing secret information may violate company policies and could lead to disciplinary action. Proceed with caution.');
             break;
@@ -110,4 +110,5 @@ function handleCommand(command) {
 // Start terminal with first prompt
 
 addLine('', true);
+
 
