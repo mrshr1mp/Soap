@@ -102,6 +102,13 @@ function handleCommand(command) {
             addLine('News Report: Silly Soap Inc. has recently announced the integration of advanced AI technology into their product development process. This move aims to enhance the creativity and efficiency of their design team, allowing for more innovative soap products that cater to diverse customer preferences. The AI system will assist in analyzing market trends, customer feedback, and design patterns to create unique and appealing soap designs. Silly Soap Inc. believes that this technological advancement will not only improve their product offerings but also set a new standard in the soap industry for innovation and customer satisfaction.');
             addLine('Warning: Accessing secret information may violate company policies and could lead to disciplinary action. Proceed with caution.');
             break;
+        case 'warning':
+            addLine('If you are system version Silly Soap Terminal v1.0.0 or lower, please be aware that certain commands may contain sensitive information. Accessing such information without proper authorization may violate company policies and could lead to disciplinary action. Always ensure you have the necessary permissions before executing commands that may reveal confidential data. Please upgrade your system to the latest version to ensure data security. To upgrade, use the sudo-cd-generate-id command.');
+            addLine('Warning: Accessing secret information may violate company policies and could lead to disciplinary action. Proceed with caution.');
+            break;  
+        case 'sudo-cd-generate-id':
+            addLine('U3lzdGVtIE5hbWU6IFNpbGx5IFNvYXAgVGVybWluYWxWMiB8IFVzZXI6IEd1ZXN0IFVzZXIgVHlwZTogR3Vlc3QgfCBTdXBlcjogRmFsc2UgfCBJRCBDYXJkID0gIk4vQSIK');
+            break;
         default:
             addLine(`Unknown command: <${command}> Enter "help" for help.`);
     }
@@ -110,5 +117,6 @@ function handleCommand(command) {
 // Start terminal with first prompt
 
 addLine('', true);
+
 
 
