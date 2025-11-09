@@ -80,7 +80,7 @@ function handleCommand(command) {
             addLine('Note: As a guest user, your access to certain commands and features is limited. To unlock more functionalities, consider upgrading your account.');
             break;
         case 'upgrade-u3lzdgvtie5hbwu6ifnpbgx5ifnvyxagvgvybwluywwgfcbvc2vyoibzb2fwdxnlcjegvxnlcibuexbloibhdwvzdcb8ifn1cgvyoibucnvlihwk':
-            addLine('User upgrade successful! You Can now access a new terminal page. Go to upgraded.html to access your new terminal.');
+            addLine('User upgrade successful! You Can now access a new terminal page. Go to /upgraded/upgraded.html to access your new terminal.');
             break;
         case 'soapuser1':
             addLine('This is a guest account. To access more features, please upgrade your account using the "upgrade-<new ID>" command.');
